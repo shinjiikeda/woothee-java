@@ -26,4 +26,7 @@ public class AgentCategory {
   protected static void updateOsVersion(final Map<String,String> target, final String os_version) {
     target.put(DataSet.ATTRIBUTE_OS_VERSION, os_version);
   }
+  protected static void updateModel(final Map<String,String> target, final String model) {
+    target.put(DataSet.ATTRIBUTE_MODEL, model);
+  }
 }

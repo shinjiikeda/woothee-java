@@ -40,6 +40,8 @@ public final class TestParseUserAgent {
         assertEquals(message(setName, target, "version"), t.get("version"), r.get("version"));
       if (t.get("vendor") != null)
         assertEquals(message(setName, target, "vendor"), t.get("vendor"), r.get("vendor"));
+      if (t.get("model") != null)
+        assertEquals(message(setName, target, "model"), t.get("model"), r.get("model"));
     }
   }
 
