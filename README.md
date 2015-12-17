@@ -17,6 +17,9 @@ Map r = Classifier.parse("user agent string");
 r.get("name")
 // => name of browser (or string like name of user-agent)
 
+r.get("model")
+// => model from user-agent, or carrier name of mobile phones
+
 r.get("category")
 // => "pc", "smartphone", "mobilephone", "appliance", "crawler", "misc", "unknown"
 
@@ -38,6 +41,8 @@ For unknown user-agent (or partially failed to parse), result objects may have v
  * labels of user terminal type, one of 'pc', 'smartphone', 'mobilephone', 'appliance', 'crawler' or 'misc' (or 'UNKNOWN')
 * `name`
  * the name of browser, like 'Internet Explorer', 'Firefox', 'GoogleBot'
+* `model`
+ * the model of android smartphone 
 * `version`
  * version string, like '8.0' for IE, '9.0.1' for Firefix, '0.2.149.27' for Chrome, and so on
 * `os`
