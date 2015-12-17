@@ -14,6 +14,7 @@ public class SafariChrome extends AgentCategory {
   private static Pattern chromeVerRegex = Pattern.compile("(?:Chrome|CrMo|CriOS)/([.0-9]+)");
   private static Pattern operaVerRegex = Pattern.compile("OPR/([.0-9]+)");
   private static Pattern safariVerRegex = Pattern.compile("Version/([.0-9]+)");
+  private static Pattern firefoxVerRegex = Pattern.compile("FxiOS/([.0-9]+)");
 
   public static boolean challenge(final String ua, final Map<String,String> result) {
     int pos = ua.indexOf("Safari/");
@@ -75,6 +76,15 @@ public class SafariChrome extends AgentCategory {
       return true;
     }
     
+    // iOS Firefox
+    Matcher fixos = firefoxVerRegex.matcher(ua);
+    if (fixos.find()) {
+      version = fixos.group(1);
+      updateMap(result, DataSet.get("Firefox"));
+      updateVersion(result, version);
+      return true;
+    }
+
     // Safari (PC/Mobile)
     Matcher safari = safariVerRegex.matcher(ua);
     if (safari.find())
