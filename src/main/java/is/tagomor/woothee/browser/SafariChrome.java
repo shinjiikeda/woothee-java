@@ -10,7 +10,7 @@ import is.tagomor.woothee.DataSet;
 
 public class SafariChrome extends AgentCategory {
   private static Pattern edgeVerRegex = Pattern.compile("Edge/([.0-9]+)");
-  private static Pattern androidVerRegex = Pattern.compile("(?:Android) ([.0-9]+);(?: ja\\-jp;)? ([A-Z0-9]+)");
+  private static Pattern androidVerRegex = Pattern.compile("(?:Android) ([.0-9]+);(?: [a-z]{2}\\-[a-zA-Z]{2};)? ([A-Za-z0-9][A-Za-z0-9\\- ]+) Build\\/");
   private static Pattern chromeVerRegex = Pattern.compile("(?:Chrome|CrMo|CriOS)/([.0-9]+)");
   private static Pattern operaVerRegex = Pattern.compile("OPR/([.0-9]+)");
   private static Pattern safariVerRegex = Pattern.compile("Version/([.0-9]+)");
@@ -56,6 +56,11 @@ public class SafariChrome extends AgentCategory {
         version = chrome.group(1);
       updateMap(result, DataSet.get("Chrome"));
       updateVersion(result, version);
+      Matcher android = androidVerRegex.matcher(ua);
+      if (android.find()) {
+        model = android.group(2);
+        updateModel(result, model);
+      }
       return true;
     }
 
